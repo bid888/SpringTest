@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Filter App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛍️ Product Filter Application</h1>
+            <p class="subtitle">Dynamic product filtering with advanced search</p>
+        </header>
+
+        <div class="controls-section">
+            <div class="generate-section">
+                <h2>Generate Products</h2>
+                <div class="generate-controls">
+                    <input type="number" id="productCount" value="100" min="1" max="10000" placeholder="Number of products">
+                    <label>
+                        <input type="checkbox" id="clearExisting" checked>
+                        Clear existing products
+                    </label>
+                    <button id="generateBtn" class="btn btn-primary">Generate Products</button>
+                </div>
+                <div id="generateStatus" class="status-message"></div>
+            </div>
+
+            <div class="stats-section" id="statsSection">
+                <h3>Database Statistics</h3>
+                <div class="stats-grid" id="statsGrid">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Products</span>
+                        <span class="stat-value" id="statTotal">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Categories</span>
+                        <span class="stat-value" id="statCategories">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Brands</span>
+                        <span class="stat-value" id="statBrands">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Avg Price</span>
+                        <span class="stat-value" id="statAvgPrice">$0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="filters-section">
+            <h2>Filter Products</h2>
+            
+            <div class="filter-grid">
+                <div class="filter-group">
+                    <label for="searchInput">Search</label>
+                    <input type="text" id="searchInput" placeholder="Search products...">
+                </div>
+
+                <div class="filter-group">
+                    <label for="categoryFilter">Category</label>
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="brandFilter">Brand</label>
+                    <select id="brandFilter">
+                        <option value="">All Brands</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="minPrice">Min Price</label>
+                    <input type="number" id="minPrice" placeholder="Min" step="0.01">
+                </div>
+
+                <div class="filter-group">
+                    <label for="maxPrice">Max Price</label>
+                    <input type="number" id="maxPrice" placeholder="Max" step="0.01">
+                </div>
+
+                <div class="filter-group">
+                    <label for="sortBy">Sort By</label>
+                    <select id="sortBy">
+                        <option value="name">Name</option>
+                        <option value="price">Price</option>
+                        <option value="stock_quantity">Stock</option>
+                        <option value="category">Category</option>
+                        <option value="brand">Brand</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="sortOrder">Order</label>
+                    <select id="sortOrder">
+                        <option value="ASC">Ascending</option>
+                        <option value="DESC">Descending</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <button id="applyFiltersBtn" class="btn btn-secondary">Apply Filters</button>
+                    <button id="resetFiltersBtn" class="btn btn-tertiary">Reset</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-section">
+            <div class="results-header">
+                <h2>Products <span id="resultsCount">(0)</span></h2>
+                <div id="loadingIndicator" class="loading" style="display: none;">Loading...</div>
+            </div>
+
+            <div id="productsGrid" class="products-grid">
+                <div class="empty-state">
+                    <p>No products found. Generate some products to get started!</p>
+                </div>
+            </div>
+
+            <div id="pagination" class="pagination" style="display: none;"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
