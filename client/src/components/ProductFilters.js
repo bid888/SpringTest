@@ -36,7 +36,12 @@ function ProductFilters({ filters, onFilterChange, onReset }) {
     onFilterChange(localFilters);
   };
 
-  // Debounced search
+  // PERFORMANCE OPTIMIZATION #5: Debounced Search
+  // Delay API calls by 500ms after user stops typing
+  // - Prevents API call on every keystroke (would be dozens of calls per search)
+  // - Reduces server load and network traffic significantly
+  // - Improves user experience (no flickering from rapid updates)
+  // - 500ms is sweet spot: feels instant but reduces calls by ~90%
   useEffect(() => {
     const timer = setTimeout(() => {
       if (localFilters.search !== filters.search) {

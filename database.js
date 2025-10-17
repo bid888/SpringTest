@@ -36,7 +36,12 @@ function initializeDatabase() {
     } else {
       console.log('Products table ready');
       
-      // Create indexes for better query performance
+      // PERFORMANCE OPTIMIZATION #1: Database Indexes
+      // Create B-tree indexes on frequently queried columns
+      // - Speeds up WHERE clauses (filtering by category/brand/price)
+      // - Speeds up ORDER BY clauses (sorting)
+      // - Index lookups are O(log n) vs O(n) for full table scans
+      // - Critical for queries on large datasets (1000+ products)
       db.run('CREATE INDEX IF NOT EXISTS idx_category ON products(category)', (err) => {
         if (err) console.error('Error creating category index:', err.message);
       });
